@@ -1,4 +1,4 @@
-# Integrating Docker and ADB
+# Docker, Android and Python on MacBook
 
 Demonstration of using ADB in Docker
 
@@ -6,11 +6,36 @@ Demonstration of using ADB in Docker
 
 You must have the following installed:
 
-- Docker (version 20.X or higher)
-- Android debug bridge (adb) (any version compatible with adb protocol v1.0.41)
+- Docker Desktop
+- Android Studio for emulation
+- Android debug bridge (adb)
 
 Ideally, connect an Android device and enable USB debugging. However, all
 examples in this project will work without any Android devices present.
+
+## Installing ADB on your Macbook
+
+```
+brew install android-platform-tools
+```
+
+## Install Android Studio
+
+![Image1](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/0j3tt3bwyjkro15e3yfy.png)
+
+## List the Android devices
+
+```
+adb devices
+List of devices attached
+emulator-5554	device
+```
+
+## Clone the repo
+
+```
+git clone https://github.com/ajeetraina/android-adb-docker-python
+```
 
 ## To Build
 
@@ -28,26 +53,29 @@ tests.
 
 ```
 # ./build_docker_image.sh
+```
+
+```
 # ./run_docker_container.sh
 Creating network "adb-docker-demo_default" with the default driver
 Creating adb-docker-demo ... done
-# docker exec adb-docker-demo ./python_adb_example.py
+```
+
+```
+docker exec adb-docker-demo ./python_adb_example.py
 Device:
-    device = <AndroidDevice Pixel 2 XL - XXX>
-    serial = XXX
-    model = Pixel 2 XL
+    device = <AndroidDevice mainline - emulator-5554>
+    serial = EMULATOR35X2X10X0
+    model = mainline
     architecture = arm64-v8a
-    sdk_version = 29
-    release_version = 10
+    sdk_version = 34
+    release_version = 14
+```
+
+```
 # docker exec adb-docker-demo robot robot_adb_example.robot
-==============================================================================
-Robot Adb Example                                                             
-==============================================================================
-Verify devices accessible through adb                                 | PASS |
-------------------------------------------------------------------------------
-Robot Adb Example                                                     | PASS |
-1 test, 1 passed, 0 failed
-==============================================================================
+
+..
 Output:  /code/output.xml
 Log:     /code/log.html
 Report:  /code/report.html
