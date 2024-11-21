@@ -51,9 +51,6 @@ Execute the `run_docker_container.sh` to start the docker-compose project. With 
 container running, use `docker exec` to run the Python script or run the Robot
 tests.
 
-```
-# ./build_docker_image.sh
-```
 
 ```
 # ./run_docker_container.sh
